@@ -18,17 +18,16 @@ collections
 concurrent.futures
 re
 You can install the required libraries using pip:
-
-sh
-Copy code
 pip install scipy numpy
-Usage
-sh
-Copy code
+
 python motif.py <target_file> <background_file> -l <motif_length>
+
 <target_file>: Path to the text file with target sequences.
 <background_file>: Path to the FASTA file with background sequences.
 -l <motif_length>: Length of the motifs to find (required).
+
+Download the background dataset from https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/
+The dataset is too big to upload
 Main Function
 The main function orchestrates the reading of input files, counting motifs, and filtering significant motifs. It prints out the most significant motifs found, along with their counts and p-values.
 
@@ -38,8 +37,6 @@ The tool was benchmarked against the HOMER motif discovery tool using a publishe
 
 Results
 Tool Results
-plaintext
-Copy code
 Target counts: 1006 motifs
 Background counts: 15070 motifs
 Motif: TTTTT, Count: 138, p-value: 2.5740005782776596e-303
@@ -48,8 +45,7 @@ Motif: AGAGG, Count: 58, p-value: 3.815814954696852e-114
 Motif: CCGCC, Count: 42, p-value: 4.342270436943195e-110
 Motif: GAGGA, Count: 54, p-value: 3.9428811880440666e-107
 HOMER Results
-plaintext
-Copy code
+
 >TATCG	1-TATCG	5.148095	0.000000	0	T:1.0(100.00%),B:177.1(100.00%),P:1e0	Tpos:1831.0,Tstd:233.0,Bpos:3362300.9,Bstd:4492853.8,StrandBias:10.0,Multiplicity:2.00
 >TCGAT	2-TCGAT	5.148095	0.000000	0	T:1.0(100.00%),B:177.1(100.00%),P:1e0	Tpos:3971.5,Tstd:1066.0,Bpos:2683793.9,Bstd:4214475.4,StrandBias:0.0,Multiplicity:3.00
 >GTCGA	3-GTCGA	5.148095	0.000000	0	T:1.0(100.00%),B:177.1(100.00%),P:1e0	Tpos:2543.3,Tstd:948.5,Bpos:2529046.1,Bstd:4192481.7,StrandBias:-1.0,Multiplicity:3.00
@@ -61,11 +57,11 @@ According to the published dataset, the core motif for this transcription factor
 Performance
 The tool took approximately 8 minutes to process, which is comparable to HOMER.
 
-Challenges and Future Directions
 Challenges
 Incorrect handling of headers in the FASTA parser.
 Errors related to processing non-DNA sequences.
 Issues with the calculation of expected counts in the statistical tests.
+
 Future Directions
 Algorithm Optimization: Further refine the algorithm to handle larger datasets more efficiently, potentially through more advanced data structures or search techniques.
 Integration of Additional Statistical Models: Enhance the tool by incorporating a variety of statistical models to assess motif significance, providing a more robust analysis.
